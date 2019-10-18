@@ -1,0 +1,12 @@
+.classpath
+.project
+
+target/
+.settings/
+~$*.xlsx
+~$*.xls
+
+*/assembly/
+
+.idea/
+*.iml

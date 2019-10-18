@@ -1,0 +1,81 @@
+/* TableColumnImpl.java
+
+	Purpose:
+		
+	Description:
+		
+	History:
+		Dec 9, 2014 7:05:44 PM, Created by henrichen
+
+	Copyright (C) 2014 Potix Corporation. All Rights Reserved.
+*/
+
+package io.keikai.model.impl;
+
+import io.keikai.model.STableColumn;
+
+/**
+ * Table column.
+ * @author henri
+ * @since 3.8.0
+ */
+public class TableColumnImpl extends AbstractTableColumnAdv {
+	private static final long serialVersionUID = 4333495215409538027L;
+	
+	String _name;
+	String _totalsRowLabel;
+	String _totalsRowFormula;
+	STableColumn.STotalsRowFunction _totalsRowFunction;
+	
+	public TableColumnImpl(String name) {
+		_name = name;
+	}
+	@Override
+	public String getName() {
+		return _name;
+	}
+
+	@Override
+	public String getTotalsRowLabel() {
+		return _totalsRowLabel;
+	}
+
+	@Override
+	public STableColumn.STotalsRowFunction getTotalsRowFunction() {
+		return _totalsRowFunction;
+	}
+
+	@Override
+	public void setName(String name) {
+		_name = name;
+	}
+
+	@Override
+	public void setTotalsRowLabel(String label) {
+		_totalsRowLabel = label;
+	}
+
+	@Override
+	public void setTotalsRowFunction(STableColumn.STotalsRowFunction func) {
+		_totalsRowFunction = func;
+	}
+	@Override
+	public String getTotalsRowFormula() {
+		return _totalsRowFormula;
+	}
+	@Override
+	public void setTotalsRowFormula(String formula) {
+		_totalsRowFormula = formula;
+	}
+	//ZSS-1183
+	//@since 3.9.0
+	@Override
+	/*package*/ AbstractTableColumnAdv cloneTableColumn() {
+		TableColumnImpl tb = new TableColumnImpl(this._name);
+		tb._totalsRowLabel = this._totalsRowLabel;
+		tb._totalsRowFormula = this._totalsRowFormula;
+		tb._totalsRowFunction = this._totalsRowFunction;
+		
+		return tb;
+	}
+}

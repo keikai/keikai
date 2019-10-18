@@ -1,0 +1,126 @@
+/* TableStyleImpl.java
+
+	Purpose:
+		
+	Description:
+		
+	History:
+		Dec 9, 2014 7:10:04 PM, Created by henrichen
+
+	Copyright (C) 2014 Potix Corporation. All Rights Reserved.
+*/
+
+package io.keikai.model.impl;
+
+import io.keikai.model.SBook;
+import io.keikai.model.STableStyle;
+import org.zkoss.lang.Objects;
+import io.keikai.model.sys.EngineFactory;
+
+/**
+ * Table style
+ * @author henri
+ * @since 3.8.0
+ */
+public class TableStyleInfoImpl extends AbstractTableStyleInfoAdv {
+	private static final long serialVersionUID = 7484917725933371393L;
+	private String name;
+	private boolean showColumnStripes;
+	private boolean showRowStripes;
+	private boolean showFirstColumn;
+	private boolean showLastColumn;
+	private STableStyle tableStyle; //ZSS-977
+	
+	public TableStyleInfoImpl(String name, boolean showColumnStripes, boolean showRowStrips,
+			boolean showFirstColumn, boolean showLastColumn) {
+		this.name = name; // "None" when name is null
+		this.showColumnStripes = showColumnStripes;
+		this.showRowStripes = showRowStrips;
+		this.showFirstColumn = showFirstColumn;
+		this.showLastColumn = showLastColumn;
+	}
+	
+	@Override
+	public String getName() {
+		return name;
+	}
+	
+	@Override
+	public void setName(String name) {
+		if (!Objects.equals(name, this.name)) {
+			tableStyle = null;
+		}
+		this.name = name;
+	}
+
+	@Override
+	public boolean isShowColumnStripes() {
+		return showColumnStripes;
+	}
+	
+	@Override
+	public void setShowColumnStripes(boolean b) {
+		showColumnStripes = b;
+	}
+
+	@Override
+	public boolean isShowRowStripes() {
+		return showRowStripes;
+	}
+	
+	@Override
+	public void setShowRowStripes(boolean b) {
+		showRowStripes = b;
+	}
+
+	@Override
+	public boolean isShowLastColumn() {
+		return showLastColumn;
+	}
+	
+	@Override
+	public void setShowLastColumn(boolean b) {
+		showLastColumn = b;
+	}
+
+	@Override
+	public boolean isShowFirstColumn() {
+		return showFirstColumn;
+	}
+	
+	@Override
+	public void setShowFirstColumn(boolean b) {
+		showFirstColumn = b;
+	}
+	
+	
+	//ZSS-977
+	@Deprecated
+	@Override
+	public STableStyle getTableStyle() {
+		return getTableStyle(null);
+	}
+	
+	//ZSS-1185
+	@Override
+	public STableStyle getTableStyle(SBook book) {
+		if (tableStyle == null) {
+			tableStyle = EngineFactory.getInstance()
+							.createFormatEngine().getTableStyle(book, name);
+		}
+		return tableStyle;
+	}
+	
+	//ZSS-1183
+	@Override
+	/*package*/ AbstractTableStyleInfoAdv cloneTableStyleInfo(SBook book) {
+		TableStyleInfoImpl dest = new TableStyleInfoImpl(this.name, 
+				this.showColumnStripes, this.showRowStripes,
+				this.showFirstColumn, this.showLastColumn);
+		
+		dest.tableStyle = tableStyle == null ? 
+				null : ((AbstractTableStyleAdv)tableStyle).cloneTableStyle(book);
+		
+		return dest;
+	}
+}

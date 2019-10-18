@@ -1,0 +1,84 @@
+/* ClearCellAction.java
+
+{{IS_NOTE
+	Purpose:
+		
+	Description:
+		
+	History:
+		2013/7/25, Created by Dennis.Chen
+}}IS_NOTE
+
+Copyright (C) 2013 Potix Corporation. All Rights Reserved.
+
+{{IS_RIGHT
+	This program is distributed under GPL Version 2.0 in the hope that
+	it will be useful, but WITHOUT ANY WARRANTY.
+}}IS_RIGHT
+*/
+package io.keikai.ui.impl.undo;
+
+import io.keikai.api.CellOperationUtil;
+import io.keikai.api.Range;
+import io.keikai.api.Ranges;
+import io.keikai.api.model.CellStyle;
+import io.keikai.api.model.Sheet;
+import io.keikai.model.CellRegion;
+
+/**
+ * 
+ * @author dennis
+ *
+ */
+public class ClearCellAction extends AbstractCellDataStyleAction {
+	private static final long serialVersionUID = 3441368688115033569L;
+
+	public enum Type{
+		CONTENT,
+		STYLE,
+		ALL
+	}
+	
+	private CellStyle[][] oldStyles = null;
+	private String[][] oldEditTexts = null;
+	private Type _type;
+	
+	public ClearCellAction(String label, Sheet sheet,int row, int column, int lastRow,int lastColumn,Type type){
+		super(label,sheet,row,column,lastRow,lastColumn,toReserveType(type));
+		this._type = type;
+	}
+
+	private static int toReserveType(Type type) {
+		switch(type){
+		case CONTENT:
+			return RESERVE_CONTENT;
+		case STYLE:
+			// ZSS-553: According to ZSS-298 - we remove merge when clear style, so we need to reserve merge when clear cell style.
+			return RESERVE_STYLE | RESERVE_MERGE;
+		case ALL:
+			return RESERVE_ALL;
+		}
+		return RESERVE_ALL;
+	}
+
+	protected void applyAction(){
+		Range r = Ranges.range(_sheet,_row,_column,_lastRow,_lastColumn);
+		switch(_type){
+		case CONTENT:
+			CellOperationUtil.clearContents(r);
+			break;
+		case STYLE:
+			CellOperationUtil.clearStyles(r);
+			break;
+		case ALL:
+			CellOperationUtil.clearAll(r);
+			break;
+		}
+	}
+	
+	//ZSS-1310
+	@Override
+	protected boolean isSheetProtected() {
+		return isAnyCellProtected(_sheet, new CellRegion(_row, _column, _lastRow, _lastColumn));
+	}
+}
