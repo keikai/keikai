@@ -16,7 +16,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>io.keikai</groupId>
-			<artifactId>model</artifactId>
+			<artifactId>keikai-model</artifactId>
 			<version>${project.version}</version>
 		</dependency>	
 		<dependency>
