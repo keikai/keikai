@@ -65,7 +65,7 @@
                         <webInfIncludeJarPattern>^$</webInfIncludeJarPattern>
                         <containerIncludeJarPattern>^$</containerIncludeJarPattern>
                     </webAppConfig>
-                    <scanIntervalSeconds>5</scanIntervalSeconds>
+<!--                    <scanIntervalSeconds>5</scanIntervalSeconds>-->
                 </configuration>
             </plugin>
             <plugin>
