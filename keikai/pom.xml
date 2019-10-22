@@ -3,11 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.keikai</groupId>
-	<artifactId>keikai</artifactId>
+	<artifactId>keikai-oss</artifactId>
 	<packaging>jar</packaging>
     <parent>
         <groupId>io.keikai.parent</groupId>
-        <artifactId>build</artifactId>
+        <artifactId>build-oss</artifactId>
         <relativePath>../pom.xml</relativePath>
         <version>${revision}</version>
     </parent>
@@ -16,7 +16,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>io.keikai</groupId>
-			<artifactId>keikai-model</artifactId>
+			<artifactId>keikai-model-oss</artifactId>
 			<version>${project.version}</version>
 		</dependency>	
 		<dependency>

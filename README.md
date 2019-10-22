@@ -10,4 +10,4 @@ By running the following command with [Java Maven](https://maven.apache.org/what
 
 `$ mvn jetty:run -pl kkapp -am` 
 
-And visit http://localhost:8080/keikai-app/
+And visit http://localhost:8080/keikai-app-oss/
