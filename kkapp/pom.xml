@@ -5,7 +5,7 @@
     <artifactId>keikai-app-oss</artifactId>
     <parent>
         <groupId>io.keikai.parent</groupId>
-        <artifactId>build-oss</artifactId>
+        <artifactId>keikai-build-oss</artifactId>
         <relativePath>../pom.xml</relativePath>
         <version>${revision}</version>
     </parent>

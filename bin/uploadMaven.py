@@ -26,8 +26,6 @@ def findProjectVersion(pomFilePath):
         if child.tag.find('version') > -1:
             return child.text
 
-ZSS_MAVEN_PATH = '/zss/maven/' 
-ZPOI_MAVEN_PATH = '/zpoi/maven/'
 REMOTE_RELEASE_PATH = "//guest@10.1.3.252/potix/rd/" #fileserver
 # mount at /tmp can avoid permission denied
 MOUNTED_RELEASE_PATH = "/tmp/zss-release/"
@@ -55,15 +53,13 @@ def mountRemoteFolder():
     logger.info("destination: " + destination_path)
 
 
-ZSS_PROJECT_LIST = ['zss','zssmodel', 'zssex', 'zssjsf','zssjsp','zsspdf', 'zsshtml']
-ZPOI_PROJECT_LIST = ['zpoi', 'zpoiex']
+KK_PROJECT_LIST = ['keikai-build-oss', 'keikai-oss', 'keikai-model-oss']
 
 # create folders in file server
 # all bundles in ZSS_PROJECT_LIST => zss/releases/[version]/maven/
 # all bundles in ZPOI_PROJECT_LIST => zpoi/releases/[version]/maven/
 def createDestinationFolder():
-    createFolderIfNotExist(getBundleFileTargetFolder('zss')) # for ZSS_PROJECT_LIST
-    createFolderIfNotExist(getBundleFileTargetFolder('zpoi')) # for ZPOI_PROJECT_LIST
+    createFolderIfNotExist(getBundleFileTargetFolder('keikai')) # for KK_PROJECT_LIST
 
 
 def createFolderIfNotExist(path):
@@ -76,10 +72,7 @@ def createFolderIfNotExist(path):
 
 # get target folder for EE-Eval and EE
 def getBundleFileTargetFolder(projectName):
-    if (projectName in ZSS_PROJECT_LIST):
-        project_folder = 'zss'
-    else:
-        project_folder = 'zpoi'
+    project_folder = 'keikai' # new zpoi is put in keikai as well
     if (isEval()):
         return destination_path + project_folder +'/releases/'+getProjectVersion(projectName)+'/maven/EE-Eval'
     else:
@@ -87,15 +80,12 @@ def getBundleFileTargetFolder(projectName):
 
 
 def getProjectVersion(projectName):
-    if projectName in ZSS_PROJECT_LIST:
-        return zss_version
-    elif projectName in ZPOI_PROJECT_LIST:
-        return zpoi_version
+    return zss_version
 
 
 # copy to Potix file server / release folder
 def copyMavenBundle():
-    for projectName in ZSS_PROJECT_LIST + ZPOI_PROJECT_LIST:
+    for projectName in KK_PROJECT_LIST:
         bundle_file_name = projectName+"-"+getProjectVersion(projectName)+"-bundle.jar"
         sourceBundleFile = getLocalBundleFolder(projectName) + bundle_file_name
         destinationFolder = getBundleFileTargetFolder(projectName)
@@ -107,17 +97,11 @@ def copyMavenBundle():
 # get local bundle file path
 def getLocalBundleFolder(projectName):
     PROJECT_PATH = {
-        'zpoi'      : 'zsspoi',
-        'zss'       : 'zkspreadsheet',
-        'zssmodel'  : 'zkspreadsheet',
-        'zssex'     : 'zsscml',
-        'zpoiex'    : 'zsscml',
-        'zssjsf'    : 'zsscml',
-        'zssjsp'    : 'zsscml',
-        'zsspdf'    : 'zsscml',
-        'zsshtml'   : 'zsscml',
+        'keikai-build-oss': './',
+        'keikai-oss': './keikai',
+        'keikai-model-oss': './kkmodel',
     }
-    return os.path.join(PROJECT_PATH[projectName], projectName, 'target/')
+    return os.path.join(PROJECT_PATH[projectName], 'target/')
 
 
 def isEval():
@@ -129,7 +113,6 @@ def createVersionProperties():
     properties_file = open("version.properties",'w')
     Config.add_section('version')
     Config.set('version','zss_version',zss_version)
-    Config.set('version','zpoi_version',zpoi_version)
     if (isEval()):
         Config.set('version','maven', 'ee-eval')
     else:
@@ -141,8 +124,7 @@ def createVersionProperties():
 logger = logging.getLogger('uploadMaven')
 logging.basicConfig(level='INFO')
 
-zss_version = findProjectVersion('zkspreadsheet/zss/pom.xml')
-zpoi_version = findProjectVersion('zsspoi/zpoi/pom.xml')
+zss_version = findProjectVersion('./pom.xml')
 
 mountRemoteFolder()
 createDestinationFolder()
