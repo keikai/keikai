@@ -144,7 +144,7 @@ public class MainMenubarCtrl extends CtrlBase<Menubar> {
 		boolean hasBook = sparedsheet.getBook()!=null;
 		boolean isEE = "EE".equals(Version.getEdition());
 		Boolean evalOnly = (Boolean) Executions.getCurrent().getDesktop().getWebApp().getAttribute("Evaluation Only");
-		Boolean collabDisabled = Boolean.valueOf(Library.getProperty("zssapp.collaboration.disabled"));
+		Boolean collabDisabled = Boolean.valueOf(Library.getProperty("kkapp.collaboration.disabled"));
 		//new and open are always on
 		newFile.setDisabled(false);
 		openManageFile.setDisabled(false);
@@ -160,12 +160,12 @@ public class MainMenubarCtrl extends CtrlBase<Menubar> {
 		shareBook.setDisabled(!isEE || collabDisabled == Boolean.TRUE);
 		
 		// set about url
-		about.setHref(Library.getProperty("zssapp.menu.about.url", "http://www.keikai.io/"));
+		about.setHref(Library.getProperty("kkapp.menu.about.url", "http://www.keikai.io/"));
 		
 		// zss title
 		if(evalOnly == null) 
 			evalOnly = Boolean.FALSE;
-		if(!evalOnly && Boolean.valueOf(Library.getProperty("zssapp.menu.zssmark.hidden")) == Boolean.TRUE) {
+		if(!evalOnly && Boolean.valueOf(Library.getProperty("kkapp.menu.zssmark.hidden")) == Boolean.TRUE) {
 			zssmark.setVisible(false);
 		} else {
 			String title = ZSS_PREFIX + Version.UID;
@@ -174,11 +174,11 @@ public class MainMenubarCtrl extends CtrlBase<Menubar> {
 			zssmark.setLabel(title);
 		}
 		
-		Boolean shareBookHidden = Boolean.valueOf(Library.getProperty("zssapp.menu.sharebook.hidden"));
+		Boolean shareBookHidden = Boolean.valueOf(Library.getProperty("kkapp.menu.sharebook.hidden"));
 		if(shareBookHidden)
 			shareBook.setVisible(false);
 		
-		Boolean usernameHidden = Boolean.valueOf(Library.getProperty("zssapp.menu.username.hidden"));
+		Boolean usernameHidden = Boolean.valueOf(Library.getProperty("kkapp.menu.username.hidden"));
 		if(usernameHidden)
 			changeUsername.setVisible(false);
 		

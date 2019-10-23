@@ -111,7 +111,7 @@ import io.keikai.model.sys.formula.FunctionResolverFactory;
 public class FormulaEngineImpl implements FormulaEngine, Serializable {
 	private static final long serialVersionUID = -2283899323000274392L;
 
-	public final static String KEY_EVALUATORS = "$ZSS_EVALUATORS$";
+	public final static String KEY_EVALUATORS = "$KK_EVALUATORS$";
 
 	private static final Log _logger = Log.lookup(FormulaEngineImpl.class.getName());
 
@@ -637,7 +637,7 @@ public class FormulaEngineImpl implements FormulaEngine, Serializable {
 			
 			// create XEL context
 			xelContext = new SimpleXelContext(variableResolver, functionMapper);
-			xelContext.setAttribute("zkoss.zss.CellType", Object.class);
+			xelContext.setAttribute("io.keikai.CellType", Object.class);
 			_xelContexts.put(evalBook, xelContext);
 		}
 		return xelContext;

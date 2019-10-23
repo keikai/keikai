@@ -12,7 +12,6 @@ Copyright (C) 2013 Potix Corporation. All Rights Reserved.
 package io.keikai.app.ui;
 
 import org.zkoss.lang.Library;
-import org.zkoss.zk.ui.WebApps;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.ext.Selectable;
 /**
@@ -44,7 +43,7 @@ public class UiUtil {
 	}
 	
 	public static boolean isRepositoryReadonly(){
-		String readonly = Library.getProperty("zssapp.bookrepostory.readonly","false").toLowerCase();
+		String readonly = Library.getProperty("kkapp.bookrepostory.readonly","false").toLowerCase();
 		return "true".equals(readonly);
 	}
 }

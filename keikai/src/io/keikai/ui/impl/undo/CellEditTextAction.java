@@ -50,7 +50,7 @@ public class CellEditTextAction extends AbstractEditTextAction {
 	}
 
 	//ZSS-1046
-	private static final String ALREADY_PARSE_ERROR = "ZSS_ALREADY_PARSE_ERROR";
+	private static final String ALREADY_PARSE_ERROR = "KEIKAI_ALREADY_PARSE_ERROR";
 	protected void applyAction(){
 		boolean protect = isSheetProtected();
 		if(_editText!=null && !protect){

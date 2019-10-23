@@ -44,7 +44,7 @@ public class EventQueueListenerAdaptor implements EventListenerAdaptor,Serializa
 	
 	public EventQueueListenerAdaptor(String scope,String bookId){
 		this.queueScope = scope;
-		this.queueName = "zssModel_"+bookId;
+		this.queueName = "kkModel_"+bookId;
 	}
 
 	@Override

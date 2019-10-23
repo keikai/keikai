@@ -676,7 +676,7 @@ public class Spreadsheet extends XulElement implements Serializable, AfterCompos
 		}
 	}
 	private Focus _selfEditorFocus;
-	private static final String FRIEND_FOCUS_KEY = "zss.FirendFocus";
+	private static final String FRIEND_FOCUS_KEY = "keikai.FirendFocus";
 	
 	private FriendFocusHelper getFriendFocusHelper(){
 		FriendFocusHelper helper = null;
@@ -2800,7 +2800,7 @@ public class Spreadsheet extends XulElement implements Serializable, AfterCompos
 			//ZSS-1083(refix ZSS-838): Retrieve affected row count caused by onZSSFilter
 			// see AutoFilterHelper.java#enableAutoFilter0
 			final STable table = (STable)event.getData("TABLE");
-			final String key = (table == null ? sheet.getId() : table.getName())+"_ZSS_AFFECTED_ROWS";
+			final String key = (table == null ? sheet.getId() : table.getName())+"_KK_AFFECTED_ROWS";
 			final Integer affectedRowCount = (Integer)event.getData(key);
 			updateAutoFilter(sheet, table, affectedRowCount); //ZSS-988
 		}

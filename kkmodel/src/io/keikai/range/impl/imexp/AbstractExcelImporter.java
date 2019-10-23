@@ -102,7 +102,7 @@ abstract public class AbstractExcelImporter extends AbstractImporter implements 
 	protected Map<PictureData, Integer> importedPictureData = new HashMap<PictureData, Integer>(); 
 	
 	/** book type key for book attribute **/
-	protected static String BOOK_TYPE_KEY = "$ZSS.BOOKTYPE$";
+	protected static String BOOK_TYPE_KEY = "$KK.BOOKTYPE$";
 
 	//ZSS-854
 	protected void importDefaultCellStyles() {

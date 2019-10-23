@@ -65,7 +65,7 @@ public class NotifyChangeHelper{
 		//  Spreadsheet.java#updateAutoFilter from AutoFilterHelper.java#enableAutoFilter0
 		//  so Spreadsheet.java#updateAutoFilter can optimize the smartUpdate
 		final Execution exec = Executions.getCurrent();
-		final String key = (table == null ? sheet.getId() : table.getName())+"_ZSS_AFFECTED_ROWS";
+		final String key = (table == null ? sheet.getId() : table.getName())+"_KK_AFFECTED_ROWS";
 		if (exec != null) {
 			if ((Boolean)exec.getAttribute("CONTAINS_"+key, false) != null) {
 				Integer affectedRows = (Integer) exec.getAttribute(key, false);

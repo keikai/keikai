@@ -27,8 +27,8 @@ import io.keikai.model.SheetRegion;
  */
 public interface FormulaEngine {
 	
-	String KEY_EXTERNAL_BOOK_NAMES = "$ZSS_EXTERNAL_BOOK_NAMES$";
-	String KEY_SHEET_INDEXES = "$ZSS_SHEET_INDEXES$";
+	String KEY_EXTERNAL_BOOK_NAMES = "$KK_EXTERNAL_BOOK_NAMES$";
+	String KEY_SHEET_INDEXES = "$KK_SHEET_INDEXES$";
 
 	public FormulaExpression parse(String formula, FormulaParseContext context);
 	

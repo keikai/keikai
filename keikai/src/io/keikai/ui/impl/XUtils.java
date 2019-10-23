@@ -308,7 +308,7 @@ public class XUtils {
 	 * @return whether the {@link Spreadsheet} title is in index mode
 	 */
 	public static boolean isTitleIndexMode(Spreadsheet ss){
-		return "index".equals(ss.getAttribute("zss_titlemode"));
+		return "index".equals(ss.getAttribute("keikai_titlemode"));
 	}
 //	
 //	/**

@@ -28,7 +28,7 @@ import org.zkoss.web.theme.ThemeResolver;
  */
 public class SpreadsheetThemeResolver implements ThemeResolver {
 
-	private final static String SPREADSHEET_THEME_COOKIE_KEY = "zsstheme";
+	private final static String SPREADSHEET_THEME_COOKIE_KEY = "keikaitheme";
 
 	/**
 	 * Retrieves theme name from Cookie

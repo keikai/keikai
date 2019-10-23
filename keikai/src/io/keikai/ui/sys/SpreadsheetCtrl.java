@@ -37,7 +37,7 @@ import io.keikai.ui.impl.MergeMatrixHelper;
  */
 public interface SpreadsheetCtrl {
 
-	final public static String CHILD_PASSING_KEY = "zsschildren";
+	final public static String CHILD_PASSING_KEY = "kkchildren";
 	
 	public static final int DEFAULT_LOAD_COLUMN_SIZE = 40;
 	public static final int DEFAULT_LOAD_ROW_SIZE = 50;

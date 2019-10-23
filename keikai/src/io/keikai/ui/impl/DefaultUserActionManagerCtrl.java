@@ -119,7 +119,7 @@ public class DefaultUserActionManagerCtrl implements UserActionManagerCtrl,
 	
 	private final Set<String> _interestedEvents = new LinkedHashSet<String>();
 	
-	private static final String CLIPBOARD_KEY = "$zss.clipboard$";
+	private static final String CLIPBOARD_KEY = "$keikai.clipboard$";
 
 	private Map<String,List<UserActionHandler>> _handlerMap = new HashMap<String,List<UserActionHandler>>();
 	protected static final char SPLIT_CHAR = '/';

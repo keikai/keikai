@@ -52,7 +52,7 @@ public class BookRepositoryFactory {
 		if(repository==null){
 			synchronized(BookRepositoryFactory.class){
 				if(repository==null){
-					String path = Library.getProperty("zssapp.repository.root",WebApps.getCurrent().getRealPath("/WEB-INF/books/"));
+					String path = Library.getProperty("kkapp.repository.root",WebApps.getCurrent().getRealPath("/WEB-INF/books/"));
 					File root = new File(path);
 					if(!root.exists()){
 						root.mkdirs();

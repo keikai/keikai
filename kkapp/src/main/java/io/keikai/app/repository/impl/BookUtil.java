@@ -117,7 +117,7 @@ public class BookUtil {
 			synchronized (BookUtil.class) {
 				if (workingFolder == null) {
 					workingFolder = new File(
-							System.getProperty("java.io.tmpdir"), "zssappwork");
+							System.getProperty("java.io.tmpdir"), "kkappwork");
 					if (!workingFolder.exists()) {
 						if (!workingFolder.mkdirs()) {
 							throw new SystemException(

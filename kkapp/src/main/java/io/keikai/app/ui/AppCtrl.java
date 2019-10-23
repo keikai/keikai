@@ -100,10 +100,10 @@ import org.zkoss.zul.Script;
 public class AppCtrl extends CtrlBase<Component>{
 	private static final Log log = Log.lookup(AppCtrl.class); 
 	private static final long serialVersionUID = 1L;
-	public static final String ZSS_USERNAME = "zssUsername";
+	public static final String ZSS_USERNAME = "keikaiUsername";
 	private static final String UNSAVED_MESSAGE = "Do you want to leave this book without save??";
 	private static final String UTF8 = "UTF-8";
-	private static final boolean DISABLE_BOOKMARK = Boolean.valueOf(Library.getProperty("zssapp.bookmark.disable", "false"));
+	private static final boolean DISABLE_BOOKMARK = Boolean.valueOf(Library.getProperty("kkapp.bookmark.disable", "false"));
 	
 	private static BookRepository repo = BookRepositoryFactory.getInstance().getRepository();
 	private static CollaborationInfo collaborationInfo = CollaborationInfoImpl.getInstance();
@@ -298,7 +298,7 @@ public class AppCtrl extends CtrlBase<Component>{
 		
 		// confirmMsgWorkaround is a workaround for confirm message with Cleanup event.
 		// we don't need it if we don't use confirm message.
-		if(Boolean.valueOf(Library.getProperty("zssapp.warning.save", "true")) == Boolean.TRUE)
+		if(Boolean.valueOf(Library.getProperty("kkapp.warning.save", "true")) == Boolean.TRUE)
 			isNeedUnsavedAlert = UnsavedAlertState.STOP;
 		else
 			confirmMsgWorkaround.setParent(null);

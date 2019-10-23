@@ -850,7 +850,7 @@ import io.keikai.range.impl.DataRegionHelper.FilterRegionHelper;
 						
 		//ZSS-1083(refix ZSS-838): Handle affected rows
 		if (affectedRows != null && !affectedRows.isEmpty()) {
-			final String key = (table == null ? sheet.getId() : table.getName())+"_ZSS_AFFECTED_ROWS"; 
+			final String key = (table == null ? sheet.getId() : table.getName())+"_KK_AFFECTED_ROWS";
 			Executions.getCurrent().setAttribute("CONTAINS_"+key, true);
 			int sz = affectedRows.size();
 			int j  = 0;

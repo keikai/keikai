@@ -30,7 +30,7 @@ import org.zkoss.zk.ui.select.SelectorComposer;
 public class CtrlBase<T extends Component> extends SelectorComposer<T>{
 
 	private static final long serialVersionUID = 1L;
-	protected static final String APPCOMP = "$ZSSAPP$";
+	protected static final String APPCOMP = "$KKAPP$";
 	
 	private boolean listenZssAppEvent;
 	
@@ -113,7 +113,7 @@ public class CtrlBase<T extends Component> extends SelectorComposer<T>{
 		if(self != null) {
 			Component comp = (Component)getSelf().getAttribute(APPCOMP, true);
 			if(comp==null){
-				throw new NullPointerException("zssapp component not found");
+				throw new NullPointerException("kkapp component not found");
 			}
 			return comp;
 		}

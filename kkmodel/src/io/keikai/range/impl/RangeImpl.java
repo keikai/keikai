@@ -1393,7 +1393,7 @@ public class RangeImpl implements SRange, Serializable {
 	
 	private String nextSheetName() {
 		SBook book = getBook();
-		Integer idx = (Integer)book.getAttribute("zss.nextSheetCount");
+		Integer idx = (Integer)book.getAttribute("keikai.nextSheetCount");
 		int i = idx==null?1:idx;
 		HashSet<String> names = new HashSet<String>();
 		for (SSheet sheet : getBook().getSheets()) {
@@ -1404,7 +1404,7 @@ public class RangeImpl implements SRange, Serializable {
 		while (names.contains(name)) {
 			name = base+ (++i);
 		}
-		book.setAttribute("zss.nextSheetCount", Integer.valueOf(i+1));
+		book.setAttribute("keikai.nextSheetCount", Integer.valueOf(i+1));
 		return name;
 	}
 
