@@ -10,3 +10,4 @@ target/
 
 .idea/
 *.iml
+version.properties

@@ -28,7 +28,7 @@ def findProjectVersion(pomFilePath):
 
 REMOTE_RELEASE_PATH = "//guest@10.1.3.252/potix/rd/" #fileserver
 # mount at /tmp can avoid permission denied
-MOUNTED_RELEASE_PATH = "/tmp/zss-release/"
+MOUNTED_RELEASE_PATH = "/tmp/keikai-release/"
 DESTINATION_PATH_JENKINS = "/media/potix/rd/" # the path to file server at Jenkins
 destination_path = DESTINATION_PATH_JENKINS
 
@@ -72,7 +72,7 @@ def createFolderIfNotExist(path):
 
 # get target folder for EE-Eval and EE
 def getBundleFileTargetFolder(projectName):
-    project_folder = 'keikai' # new zpoi is put in keikai as well
+    project_folder = 'keikaioss' # new zpoi is put in keikai as well
     if (isEval()):
         return destination_path + project_folder +'/releases/'+getProjectVersion(projectName)+'/maven/EE-Eval'
     else:
