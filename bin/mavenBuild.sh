@@ -3,7 +3,6 @@
 # build Keikai Spreadsheet with maven. Because the whole process requires many steps, therefore I write it as script instead of configuring in jenkins
 
 # Usage:
-# run the script on top of 3 folders checked out from 3 repositories (zsspoi, zkspreadsheet, zsscml)
 
 # Command parameters:
 # no parameter: freshly
@@ -23,6 +22,7 @@ function buildBundle(){
     fi
 }
 
+
 edition=$1
 if [[ "official" = $edition ]] || [[ "eval" = $edition ]]
 then
@@ -38,7 +38,6 @@ function buildBundleInstallAll(){
     # install an artifact for resolving dependencies correctly
     mvn install -Dmaven.test.skip=true
 }
-
 STAMP=$(date +%Y%m%d)
 VERSION=`sed -nre 's:^.*<version>(.*)</version>.*$:\1:p' pom.xml`
 VERSION=(${VERSION[@]})
@@ -50,6 +49,11 @@ if [ "freshly" = $edition ] ; then
   sed -i "/version>/,/<\//s/>$VERSION.*<\//>$NEW_VERSION.FL.$STAMP<\//" ./pom.xml
   echo "$1 pom.xml"
   grep -n --color=auto $NEW_VERSION.FL.$STAMP ./pom.xml
+else
+  echo "=== Build $NEW_VERSION ===="
+  sed -i "/version>/,/<\//s/>$VERSION.*<\//>$NEW_VERSION<\//" ./pom.xml
+  echo "$1 pom.xml"
+  grep -n --color=auto $NEW_VERSION ./pom.xml
 fi
 
 ## update all child modules
@@ -62,4 +66,6 @@ mvn versions:revert
 ## reset version to original version
 if [ "freshly" = $edition ] ; then
   sed -i "/version>/,/<\//s/>$NEW_VERSION.FL.$STAMP<\//>$VERSION<\//" pom.xml
+else
+  sed -i "/version>/,/<\//s/>$NEW_VERSION<\//>$VERSION<\//" pom.xml
 fi
