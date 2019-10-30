@@ -6,8 +6,8 @@ target/
 ~$*.xlsx
 ~$*.xls
 
-*/assembly/
-
 .idea/
 *.iml
 version.properties
+dist
+*/__pycache__/*

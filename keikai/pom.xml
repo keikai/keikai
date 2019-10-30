@@ -9,7 +9,7 @@
         <groupId>io.keikai.parent</groupId>
         <artifactId>keikai-build-oss</artifactId>
         <relativePath>../pom.xml</relativePath>
-        <version>${revision}</version>
+        <version>5.0.0-Beta</version>
     </parent>
 	<name>Keikai Spreadsheet</name>
 	<description>Keikai Spreadsheet</description>

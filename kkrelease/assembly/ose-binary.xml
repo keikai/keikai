@@ -14,7 +14,7 @@
     <fileSets>
         <fileSet>
 <!--            release note -->
-            <directory>dist/doc/</directory>
+            <directory>../doc/</directory>
             <includes>
                 <include>**</include>
             </includes>
@@ -23,9 +23,11 @@
     </fileSets>
     <moduleSets>
         <moduleSet>
+            <useAllReactorProjects>true</useAllReactorProjects>
             <includes>
-                <include>io.keikai:*</include>
-                <include>org.zkoss.poi:*</include>
+                <include>org.zkoss.poi:zpoi</include>
+                <include>io.keikai:keikai-oss</include>
+                <include>io.keikai:keikai-model-oss</include>
             </includes>
             <sources>
                 <includeModuleDirectory>false</includeModuleDirectory>

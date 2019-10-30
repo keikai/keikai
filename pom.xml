@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.keikai.parent</groupId>
     <artifactId>keikai-build-oss</artifactId>
-    <version>${revision}</version>
+    <version>5.0.0-Beta</version>
     <packaging>pom</packaging>
     <name>Keikai Spreadsheet Build</name>
     <url>http://www.keikai.io</url>
@@ -25,9 +25,9 @@
         </license>
     </licenses>
     <properties>
-        <revision>5.0.0-SNAPSHOT</revision>
         <zk.version>8.0.5</zk.version>
         <zpoi.version>3.9.16</zpoi.version>
+        <zkcharts.version>2.0.1</zkcharts.version>
         <commons-logging.version>1.1.1</commons-logging.version>
         <commons-lang.version>2.4</commons-lang.version>
         <commons-fileupload.version>1.2.1</commons-fileupload.version>
@@ -86,11 +86,20 @@
             <name>Maven Plugin Repository</name>
             <url>http://repo1.maven.org/maven2</url>
         </pluginRepository>
+        <pluginRepository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>ZK Repository</id>
+            <name>Maven Plugin Repository</name>
+            <url>http://mavensync.zkoss.org/maven2</url>
+        </pluginRepository>
     </pluginRepositories>
     <modules>
         <module>keikai</module>
         <module>kkmodel</module>
         <module>kkapp</module>
+        <module>kkrelease</module>
     </modules>
     <build>
         <plugins>
@@ -103,44 +112,17 @@
                         <contextPath>/${project.artifactId}</contextPath>
                         <allowDuplicateFragmentNames>true
                         </allowDuplicateFragmentNames>
-                        <!-- no need to scan anything as we're using servlet 2.5 to reduce start-up time-->
+                        
                         <webInfIncludeJarPattern>^$</webInfIncludeJarPattern>
                         <containerIncludeJarPattern>^$
                         </containerIncludeJarPattern>
                     </webAppConfig>
-<!--                    <scanIntervalSeconds>5</scanIntervalSeconds>-->
+
                 </configuration>
             </plugin>
         </plugins>
     </build>
     <profiles>
-        <profile>
-            <id>freshly</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>versions-maven-plugin</artifactId>
-                        <version>2.5</version>
-                        <executions>
-                            <execution>
-                                <id>set-fl-version</id>
-                                <phase>validate</phase>
-                                <goals>
-                                    <goal>set</goal>
-                                    <goal>commit</goal>
-                                </goals>
-                                <configuration>
-                                    <newVersion>
-                                        ${project.version}.FL.${maven.build.timestamp}
-                                    </newVersion>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
         <profile>
             <id>official</id>
             <build>
@@ -160,40 +142,6 @@
                             <nosuffix>true</nosuffix>
                             <force>true</force>
                         </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>ose</id>
-            <dependencies>
-                <dependency>
-                    <groupId>io.keikai</groupId>
-                    <artifactId>keikai</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-assembly-plugin</artifactId>
-                        <version>3.1.1</version>
-                        <configuration>
-                            <finalName>keikai-bin-${project.version}</finalName>
-                            <appendAssemblyId>false</appendAssemblyId>
-                            <descriptors>
-                                <descriptor>assembly/ose-binary.xml</descriptor>
-                            </descriptors>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>binary-zip</id>
-                                <phase>process-resources</phase>
-                                <goals>
-                                    <goal>single</goal>
-                                </goals>
-                            </execution>
-                        </executions>
                     </plugin>
                 </plugins>
             </build>

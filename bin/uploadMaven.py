@@ -20,11 +20,18 @@ import sys
 
 # find zss, zpoi version from pom.xml
 def findProjectVersion(pomFilePath):
+    namespaces = {'' : 'http://maven.apache.org/POM/4.0.0'}
+    for prefix, uri in namespaces.items():
+        ET.register_namespace(prefix, uri)
+    ns = '{http://maven.apache.org/POM/4.0.0}'
     tree = ET.parse(pomFilePath)
     root = tree.getroot()
-    for child in root:
-        if child.tag.find('version') > -1:
-            return child.text
+    version = root.find(ns+'version')
+    if version is not None:
+        if version.text != '${revision}':
+            return version.text
+
+    return root.find(ns+"properties").find(ns+"revision").text
 
 REMOTE_RELEASE_PATH = "//guest@10.1.3.252/potix/rd/" #fileserver
 # mount at /tmp can avoid permission denied
@@ -73,10 +80,7 @@ def createFolderIfNotExist(path):
 # get target folder for EE-Eval and EE
 def getBundleFileTargetFolder(projectName):
     project_folder = 'keikaioss' # new zpoi is put in keikai as well
-    if (isEval()):
-        return destination_path + project_folder +'/releases/'+getProjectVersion(projectName)+'/maven/EE-Eval'
-    else:
-        return destination_path + project_folder + '/releases/' + getProjectVersion(projectName) + '/maven/proprietary/EE'
+    return destination_path + project_folder +'/releases/'+getProjectVersion(projectName)+'/maven/EE-Eval'
 
 
 def getProjectVersion(projectName):
@@ -126,7 +130,11 @@ logging.basicConfig(level='INFO')
 
 zss_version = findProjectVersion('./pom.xml')
 
-mountRemoteFolder()
-createDestinationFolder()
-copyMavenBundle()
-createVersionProperties()
+def main():
+    mountRemoteFolder()
+    createDestinationFolder()
+    copyMavenBundle()
+    createVersionProperties()
+
+if __name__ == "__main__":
+    main()

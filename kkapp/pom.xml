@@ -7,7 +7,7 @@
         <groupId>io.keikai.parent</groupId>
         <artifactId>keikai-build-oss</artifactId>
         <relativePath>../pom.xml</relativePath>
-        <version>${revision}</version>
+        <version>5.0.0-Beta</version>
     </parent>
     <packaging>war</packaging>
     <name>Keikai Spreadsheet App</name>
@@ -37,7 +37,7 @@
         <dependency>
             <groupId>org.zkoss.zk</groupId>
             <artifactId>zkex</artifactId>
-            <version>${zk.version}</version>
+            <version>${zk.version}-Eval</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -79,7 +79,7 @@
                             <goal>single</goal>
                         </goals>
                         <configuration>
-                            <finalName>keikaiee-app-${project.version}</finalName>
+                            <finalName>keikai-app-${project.version}</finalName>
                             <appendAssemblyId>false</appendAssemblyId>
                             <descriptors>
                                 <descriptor>assembly/webapp.xml</descriptor>
@@ -91,6 +91,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.2</version>
                 <executions>
                     <execution>
                         <id>make-a-jar</id>
@@ -104,6 +105,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
+                <version>3.0.0-M1</version>
                 <executions>
                     <execution>
                         <id>Add-2-local-repository</id>
@@ -116,7 +118,7 @@
                             <artifactId>${project.artifactId}</artifactId>
                             <groupId>${project.groupId}</groupId>
                             <version>${project.version}</version>
-                            <file>${project.build.directory}\${artifactId}-${version}.jar</file>
+                            <file>${project.build.directory}\${project.artifactId}-${project.version}.jar</file>
                         </configuration>
                     </execution>
                 </executions>
@@ -125,7 +127,68 @@
     </build>
     <profiles>
         <profile>
+            <id>ose</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.zkoss.zk</groupId>
+                    <artifactId>zkbind</artifactId>
+                    <version>${zk.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.zkoss.zk</groupId>
+                    <artifactId>zkex</artifactId>
+                    <version>${zk.version}-Eval</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.zkoss.chart</groupId>
+                    <artifactId>zkcharts</artifactId>
+                    <version>${zkcharts.version}-Eval</version>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <version>2.2</version>
+                        <executions>
+                            <execution>
+                                <id>project</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>../dist</outputDirectory>
+                                    <appendAssemblyId>false</appendAssemblyId>
+                                    <descriptors>
+                                        <descriptor>assembly/webapp.xml</descriptor>
+                                    </descriptors>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
             <id>eval</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.zkoss.zk</groupId>
+                    <artifactId>zkplus</artifactId>
+                    <version>${zk.version}-Eval</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.zkoss.zk</groupId>
+                    <artifactId>zkex</artifactId>
+                    <version>${zk.version}-Eval</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.zkoss.chart</groupId>
+                    <artifactId>zkcharts</artifactId>
+                    <version>${zkcharts.version}-Eval</version>
+                </dependency>
+            </dependencies>
             <build>
                 <plugins>
                     <plugin>

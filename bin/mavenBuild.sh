@@ -13,23 +13,12 @@
 bundleGoals='clean source:jar javadoc:jar repository:bundle-create -Dmaven.test.skip=true'
 evalBundleGoals='clean repository:bundle-create -Dmaven.test.skip=true' # no need source javadoc
 
-#zpoiVersion='unset'
-
-function buildBundleInstall(){
-   buildBundle $1 $2
-    # install an artifact for resolving dependencies correctly
-    mvn -pl $1 -am install -Dmaven.test.skip=true
-}
-
 # build a maven bundle file
 function buildBundle(){
-    mvn -B versions:set -DremoveSnapshot #remove '-SNAPSHOT' from project version
     if [[ $edition = "official" ]]
     then
         mvn -B -P $edition ${bundleGoals}
     else
-        mvn -P $edition validate -N # set freshly version
-        # http://maven.apache.org/plugins/maven-repository-plugin/usage.html
         mvn -B ${evalBundleGoals}
     fi
 }
@@ -50,5 +39,27 @@ function buildBundleInstallAll(){
     mvn install -Dmaven.test.skip=true
 }
 
+STAMP=$(date +%Y%m%d)
+VERSION=`sed -nre 's:^.*<version>(.*)</version>.*$:\1:p' pom.xml`
+VERSION=(${VERSION[@]})
+VERSION=${VERSION[0]}
+NEW_VERSION=${VERSION%-SNAPSHOT}
+
+if [ "freshly" = $edition ] ; then
+  echo "=== Build $NEW_VERSION.FL.$STAMP ===="
+  sed -i "/version>/,/<\//s/>$VERSION.*<\//>$NEW_VERSION.FL.$STAMP<\//" ./pom.xml
+  echo "$1 pom.xml"
+  grep -n --color=auto $NEW_VERSION.FL.$STAMP ./pom.xml
+fi
+
+## update all child modules
+mvn -N versions:update-child-modules
+
 buildBundleInstallAll
 python3 ./bin/uploadMaven.py $edition
+mvn versions:revert
+
+## reset version to original version
+if [ "freshly" = $edition ] ; then
+  sed -i "/version>/,/<\//s/>$NEW_VERSION.FL.$STAMP<\//>$VERSION<\//" pom.xml
+fi
