@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.keikai.parent</groupId>
     <artifactId>keikai-build-oss</artifactId>
-    <version>5.0.0-Beta</version>
+    <version>5.0.1-Beta</version>
     <packaging>pom</packaging>
     <name>Keikai Spreadsheet Build</name>
     <url>http://www.keikai.io</url>
@@ -25,7 +25,7 @@
         </license>
     </licenses>
     <properties>
-        <zk.version>8.0.5</zk.version>
+        <zk.version>8.0.2.2</zk.version>
         <zpoi.version>3.9.16</zpoi.version>
         <zkcharts.version>2.0.1</zkcharts.version>
         <commons-logging.version>1.1.1</commons-logging.version>
