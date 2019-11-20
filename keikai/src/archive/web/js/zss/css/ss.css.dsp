@@ -2480,3 +2480,44 @@
 .cleditorPrompt {background-color:#F6F7F9; padding:8px; font-size:8.5pt}
 .cleditorPrompt label {padding-bottom:8px}
 .cleditorMsg {background-color:#FDFCEE; width:150px; padding:4px; font-size:8.5pt}
+
+
+
+.zee-hint {
+	display: none;
+	position: absolute;
+	z-index: 16;
+}
+.zee-hint-text {
+	background: #fff;
+	border: 1px solid #cfcfcf;
+	border-radius: 0.1875rem;
+	padding: 5px 10px;
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.25);
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	color: #555;
+}
+.zee-hint-pointer {
+	transform: translate(50%, 0);
+	left: -4px;
+	position: relative;
+}
+.zee-hint-pointer-border {
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 6px 8px 6px;
+	border-color: transparent transparent #cfcfcf transparent;
+	left: 50%;
+}
+.zee-hint-pointer-inner {
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 6px 8px 6px;
+	border-color: transparent transparent #fff transparent;
+	position: absolute;
+	top: 1px;
+}
