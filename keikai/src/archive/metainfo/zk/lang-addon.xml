@@ -26,7 +26,7 @@ Copyright (C) 2007 Potix Corporation. All Rights Reserved.
     <javascript-module name="zss" version="5.0.0"/>
 	<version>
 		<version-class>io.keikai.ui.Version</version-class>
-		<version-uid>5.0.1-Beta</version-uid>
+		<version-uid>5.0.0-Beta1</version-uid>
 		<zk.version>8.0.5</zk.version><!-- or later -->
 	</version>
 
