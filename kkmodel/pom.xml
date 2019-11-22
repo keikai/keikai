@@ -8,7 +8,7 @@
         <groupId>io.keikai.parent</groupId>
         <artifactId>keikai-build-oss</artifactId>
         <relativePath>../pom.xml</relativePath>
-        <version>5.0.0-Beta1</version>
+        <version>5.0.0-Beta2</version>
     </parent>
 	<packaging>jar</packaging>
 	<name>Keikai Spreadsheet Model</name>
@@ -18,6 +18,13 @@
 			<groupId>org.zkoss.poi</groupId>
 			<artifactId>zpoi</artifactId>
 			<version>${zpoi.version}</version>
+			<exclusions>
+				<!-- avoid overriding keikai dependent zk version -->
+				<exclusion>
+					<groupId>org.zkoss.common</groupId>
+					<artifactId>zcommon</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.zkoss.zk</groupId>

@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Specification-Title: Keikai Spreadsheet
-Specification-Version: 5.0.0-Beta1
+Specification-Version: 5.0.0-Beta2
 Specification-Vendor: Potix Corporation
 Implementation-Title: io.keikai
 Implementation-URL: http://www.keikai.io
-Implementation-Version: 5.0.0-Beta1
+Implementation-Version: 5.0.0-Beta2
 Implementation-Vendor: Potix Corporation
