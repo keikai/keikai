@@ -8,7 +8,7 @@
         <groupId>io.keikai.parent</groupId>
         <artifactId>keikai-build-oss</artifactId>
         <relativePath>../pom.xml</relativePath>
-        <version>5.0.0-Beta2</version>
+        <version>5.0.0</version>
     </parent>
 	<packaging>jar</packaging>
 	<name>Keikai Spreadsheet Model</name>
