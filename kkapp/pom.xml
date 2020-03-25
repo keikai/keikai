@@ -41,16 +41,10 @@
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>${jetty.version}</version>
                 <configuration>
                     <webAppConfig>
                         <contextPath>/${project.artifactId}</contextPath>
-                        <allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
-                        <!-- no need to scan anything as we're using servlet 2.5 to reduce start-up time-->
-                        <webInfIncludeJarPattern>^$</webInfIncludeJarPattern>
-                        <containerIncludeJarPattern>^$</containerIncludeJarPattern>
                     </webAppConfig>
-<!--                    <scanIntervalSeconds>5</scanIntervalSeconds>-->
                 </configuration>
             </plugin>
             <plugin>

@@ -6,9 +6,18 @@ Keikai Spreadsheet is an open source embeddable web-based online spreadsheet tha
 * [GPL 3.0](https://choosealicense.com/licenses/gpl-3.0/)
 
 # How to run Keikai App Demo
-By running the following command with [Java Maven](https://maven.apache.org/what-is-maven.html).
+Run the following [Maven](https://maven.apache.org/what-is-maven.html) command ...
 
-`$ mvn jetty:run -pl kkapp -am` 
+```
+mvn jetty:run 
+```
+
+... or separate compile/run commands.
+
+```
+mvn compile
+mvn jetty:run -pl kkapp
+```
 
 And visit http://localhost:8080/keikai-app-oss/
 
