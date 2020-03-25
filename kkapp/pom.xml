@@ -22,22 +22,12 @@
                     <groupId>org.zkoss.zk</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
-                <exclusion>
-                    <groupId>org.zkoss.common</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
             </exclusions>
         </dependency>
-        <!-- ZK PE-->
         <dependency>
             <groupId>org.zkoss.zk</groupId>
-            <artifactId>zkplus</artifactId>
+            <artifactId>zul</artifactId>
             <version>${zk.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.zkoss.zk</groupId>
-            <artifactId>zkex</artifactId>
-            <version>${zk.version}-Eval</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -45,18 +35,13 @@
             <version>${servlet.version}</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>${commons-lang.version}</version>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.4.8.v20171121</version>
+                <version>${jetty.version}</version>
                 <configuration>
                     <webAppConfig>
                         <contextPath>/${project.artifactId}</contextPath>
@@ -125,106 +110,4 @@
             </plugin>
         </plugins>
     </build>
-    <profiles>
-        <profile>
-            <id>ose</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.zkoss.zk</groupId>
-                    <artifactId>zkbind</artifactId>
-                    <version>${zk.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.zkoss.zk</groupId>
-                    <artifactId>zkex</artifactId>
-                    <version>${zk.version}-Eval</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.zkoss.chart</groupId>
-                    <artifactId>zkcharts</artifactId>
-                    <version>${zkcharts.version}-Eval</version>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-assembly-plugin</artifactId>
-                        <version>2.2</version>
-                        <executions>
-                            <execution>
-                                <id>project</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>single</goal>
-                                </goals>
-                                <configuration>
-                                    <outputDirectory>../dist</outputDirectory>
-                                    <appendAssemblyId>false</appendAssemblyId>
-                                    <descriptors>
-                                        <descriptor>assembly/webapp.xml</descriptor>
-                                    </descriptors>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>eval</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.zkoss.zk</groupId>
-                    <artifactId>zkplus</artifactId>
-                    <version>${zk.version}-Eval</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.zkoss.zk</groupId>
-                    <artifactId>zkex</artifactId>
-                    <version>${zk.version}-Eval</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.zkoss.chart</groupId>
-                    <artifactId>zkcharts</artifactId>
-                    <version>${zkcharts.version}-Eval</version>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>versions-maven-plugin</artifactId>
-                        <version>2.5</version>
-                        <executions>
-                            <execution>
-                                <id>set-eval</id>
-                                <phase>validate</phase>
-                                <goals>
-                                    <goal>set</goal>
-                                </goals>
-                                <configuration>
-                                    <newVersion>
-                                        ${project.version}-Eval
-                                    </newVersion>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>zk-eval</id>
-                                <phase>validate</phase>
-                                <goals>
-                                    <goal>set-property</goal>
-                                </goals>
-                                <configuration>
-                                    <property>zk.version</property>
-                                    <newVersion>
-                                        ${zk.version}-Eval
-                                    </newVersion>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>

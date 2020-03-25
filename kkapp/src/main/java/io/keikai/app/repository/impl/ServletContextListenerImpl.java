@@ -8,12 +8,13 @@ import javax.servlet.ServletContextListener;
 import io.keikai.app.BookManager;
 import io.keikai.app.impl.BookManagerImpl;
 import io.keikai.app.repository.BookRepositoryFactory;
-import org.zkoss.util.logging.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.zkoss.zk.ui.WebApps;
 
 public class ServletContextListenerImpl implements ServletContextListener, Serializable {
 	private static final long serialVersionUID = 7123078891875657326L;
-	private static final Log logger = Log.lookup(ServletContextListenerImpl.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(ServletContextListenerImpl.class);
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {}
