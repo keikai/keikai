@@ -35,7 +35,8 @@ import io.keikai.app.repository.BookRepositoryFactory;
 import io.keikai.app.repository.impl.BookUtil;
 import io.keikai.app.ui.CtrlBase;
 import io.keikai.app.ui.UiUtil;
-import org.zkoss.util.logging.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.zkoss.util.media.Media;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
@@ -66,7 +67,7 @@ public class OpenManageBookCtrl extends DlgCtrlBase{
 	
 	public static final String ON_OPEN = "onOpen";
 	
-	private static final Log log = Log.lookup(OpenManageBookCtrl.class); 
+	private static final Logger log = LoggerFactory.getLogger(OpenManageBookCtrl.class);
 	@Wire
 	Listbox bookList;
 	@Wire
@@ -209,8 +210,7 @@ public class OpenManageBookCtrl extends DlgCtrlBase{
 							finalName = bookInfo.getName();
 							count++;
 						}catch(Exception x){
-							log.debug(x);
-							log.warning("exception when handling user upload file", x);
+							log.warn("exception when handling user upload file", x);
 						}finally{
 							if(is!=null){
 								is.close();

@@ -65,10 +65,11 @@ import io.keikai.ui.event.SyncFriendFocusEvent;
 import io.keikai.ui.impl.DefaultUserActionManagerCtrl;
 import io.keikai.ui.impl.Focus;
 import io.keikai.ui.sys.UndoableActionManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.zkoss.image.AImage;
 import org.zkoss.lang.Library;
 import org.zkoss.lang.Strings;
-import org.zkoss.util.logging.Log;
 import org.zkoss.util.media.AMedia;
 import org.zkoss.util.media.Media;
 import org.zkoss.util.resource.Labels;
@@ -98,7 +99,7 @@ import org.zkoss.zul.Script;
  *
  */
 public class AppCtrl extends CtrlBase<Component>{
-	private static final Log log = Log.lookup(AppCtrl.class); 
+	private static final Logger log = LoggerFactory.getLogger(AppCtrl.class);
 	private static final long serialVersionUID = 1L;
 	public static final String ZSS_USERNAME = "keikaiUsername";
 	private static final String UNSAVED_MESSAGE = "Do you want to leave this book without save??";
