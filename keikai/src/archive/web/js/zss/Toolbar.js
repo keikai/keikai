@@ -193,18 +193,20 @@ zss.Toolbar = zk.$extends(zul.layout.North, {
 
 zk.afterMount(
 	function () {
-		jq('.zstbtabpanel .z-toolbarbutton[disabled]').removeAttr('title');
-		jq('body').append('<div class="zee-hint"><div class="zee-hint-pointer"><div class="zee-hint-pointer-border"></div><div class="zee-hint-pointer-inner"></div></div><div class="zee-hint-text"><span></span>Available in Keikai EE</div></div>');
-		jq('.zstbtabpanel .z-toolbarbutton[disabled]').mouseover(function() {
-			console.log('mouseover');
-			var label = zk.Widget.$(this)._tooltiptext || zk.Widget.$(this)._level;
-			jq('.zee-hint-text span').text(label + ': ');
-			zk('.zee-hint').position(this, 'after_center');
-			jq('.zee-hint').css('display', 'block');
-		});
-		jq('.zstbtabpanel .z-toolbarbutton[disabled]').mouseleave(function() {
-			jq('.zee-hint').css('display', 'none');
-		});
+		setTimeout(function(){
+			jq('.zstbtabpanel .z-toolbarbutton[disabled]').removeAttr('title');
+			jq('body').append('<div class="zee-hint"><div class="zee-hint-pointer"><div class="zee-hint-pointer-border"></div><div class="zee-hint-pointer-inner"></div></div><div class="zee-hint-text"><span></span>Available in Keikai EE</div></div>');
+			jq('.zstbtabpanel .z-toolbarbutton[disabled]').mouseover(function() {
+				console.log('mouseover');
+				var label = zk.Widget.$(this)._tooltiptext || zk.Widget.$(this)._level;
+				jq('.zee-hint-text span').text(label + ': ');
+				zk('.zee-hint').position(this, 'after_center');
+				jq('.zee-hint').css('display', 'block');
+			});
+			jq('.zstbtabpanel .z-toolbarbutton[disabled]').mouseleave(function() {
+				jq('.zee-hint').css('display', 'none');
+			});
+		},1000);
 	}
 );
 })();
