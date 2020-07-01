@@ -29,6 +29,11 @@
             <artifactId>zul</artifactId>
             <version>${zk.version}</version>
         </dependency>
+		<dependency>
+            <groupId>org.zkoss.theme</groupId>
+            <artifactId>breeze</artifactId>
+            <version>${zk.version}</version>
+        </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
