@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.keikai.parent</groupId>
     <artifactId>keikai-build-oss</artifactId>
-    <version>5.0.0</version>
+    <version>5.0.0.1</version>
     <packaging>pom</packaging>
     <name>Keikai Spreadsheet Build</name>
     <url>https://www.keikai.io</url>

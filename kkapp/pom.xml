@@ -7,7 +7,7 @@
         <groupId>io.keikai.parent</groupId>
         <artifactId>keikai-build-oss</artifactId>
         <relativePath>../pom.xml</relativePath>
-        <version>5.0.0</version>
+        <version>5.0.0.1</version>
     </parent>
     <packaging>war</packaging>
     <name>Keikai Spreadsheet App</name>
@@ -42,7 +42,7 @@
         </dependency>
     </dependencies>
     <build>
-		<finalName>${project.artifactId}-${project.version}-${maven.build.timestamp}</finalName>
+		<finalName>${project.artifactId}-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
